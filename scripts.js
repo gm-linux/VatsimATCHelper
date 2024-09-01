@@ -368,6 +368,18 @@ function updateClock() {
     }, 1000);
 }
 
+// Dark Mode Toggle
+document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.container').classList.toggle('dark-mode');
+    document.querySelector('.navbar').classList.toggle('dark-mode');
+    document.querySelector('.navbar-menu a').classList.toggle('dark-mode');
+    document.querySelectorAll('input, select, textarea').forEach(function(element) {
+        element.classList.toggle('dark-mode');
+    });
+});
+
+
 function clearForm() {
     document.getElementById("flight-plan-form").reset();
     document.getElementById("departure-airport-name").textContent = "";

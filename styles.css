@@ -158,7 +158,7 @@ button.clear-btn, .generate-btn, .submit-btn {
 }
 
 button.clear-btn:hover, .generate-btn:hover, .submit-btn:hover {
-    background-color: #ff3333;
+    background-color: #0056b3;
     transform: scale(1.05);
 }
 
@@ -380,4 +380,178 @@ button.clear-btn:hover, .generate-btn:hover, .submit-btn:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181818; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+.container.dark-mode {
+    background-color: #2c2c2c; /* Slightly lighter container background */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.dark-mode .form-section {
+    background-color: #333; /* Lighter background for form sections */
+    border-color: #444; /* Slightly lighter border */
+    border-radius: 10px;
+}
+
+.dark-mode input, .dark-mode select, .dark-mode textarea {
+    background-color: #444; /* Darker background for inputs */
+    color: #f0f0f0; /* Bright text for better readability */
+    border: 1px solid #666; /* Slightly lighter border */
+}
+
+.dark-mode input::placeholder, .dark-mode select, .dark-mode textarea::placeholder {
+    color: #bbb; /* Brighter placeholder text */
+}
+
+.dark-mode .navbar {
+    background-color: #333; /* Darker navbar */
+}
+
+.dark-mode .navbar-menu a {
+    color: #e0e0e0; /* Light text in navbar */
+}
+
+.dark-mode .navbar-menu a:hover {
+    background-color: #444; /* Darker hover background */
+}
+
+/* Dark Mode Buttons */
+.dark-mode-btn {
+    background-color: #444; /* Darker button background */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.dark-mode-btn:hover {
+    background-color: #555; /* Slightly lighter on hover */
+}
+
+/* Headings and Labels */
+.dark-mode h1, .dark-mode h2, .dark-mode label {
+    color: #f5f5f5; /* Brighten headings and labels */
+}
+
+.dark-mode h1 {
+    color: #ffffff; /* Pure white for the main title */
+    text-shadow: 1px 1px 2px #000; /* Subtle shadow for readability */
+}
+
+.dark-mode h2 {
+    color: #e0e0e0; /* Lighter subheadings */
+}
+
+.dark-mode .refresh-btn {
+    background-color: #4CAF50; /* A brighter green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.dark-mode .refresh-btn:hover {
+    background-color: #45a049; /* Slightly lighter on hover */
+}
+
+/* Dark Mode Search Input */
+.dark-mode #aircraft-search {
+    background-color: #333; /* Dark background for the search input */
+    color: #f5f5f5; /* Bright text color */
+    border: 1px solid #666; /* Slightly lighter border */
+}
+
+.dark-mode #aircraft-search::placeholder {
+    color: #bbb; /* Brighten the placeholder text */
+}
+
+/* Dark Mode Dropdown */
+.dark-mode #aircraft {
+    background-color: #444; /* Dark background for dropdown */
+    color: #f5f5f5; /* Bright text color */
+    border: 1px solid #666; /* Lighter border for contrast */
+}
+
+.dark-mode #aircraft option {
+    background-color: #444; /* Ensure options in dropdown match background */
+    color: #f5f5f5; /* Ensure text is readable in dropdown */
+}
+
+/* Dark Mode for METAR Text */
+.dark-mode #departure-airport-name,
+.dark-mode #arrival-airport-name {
+    color: #f5f5f5 !important; /* Force the text color to be bright */
+}
+
+.dark-mode #departure-metar,
+.dark-mode #arrival-metar {
+    color: #f5f5f5 !important; /* Ensure METAR text is visible */
+}
+
+.dark-mode #departure-metar-info-message,
+.dark-mode #arrival-metar-info-message {
+    color: #f5f5f5 !important; /* Ensure METAR update message is visible */
+}
+
+.dark-mode #metar-loading {
+    color: #007BFF !important; /* Ensure the loading indicator is visible */
+}
+
+/* Dark Mode for Modal */
+.dark-mode .model-content {
+    background-color: #2c2c2c; /* Darker background for modal content */
+    color: #f5f5f5; /* Bright text color for better readability */
+    border: 1px solid #444; /* Subtle border for modal */
+}
+
+.dark-mode .model-content h2,
+.dark-mode .model-content label {
+    color: #ffffff; /* Ensure headings and labels are bright and visible */
+}
+
+.dark-mode .model-content input,
+.dark-mode .model-content select {
+    background-color: #444; /* Dark background for inputs */
+    color: #f5f5f5; /* Bright text for inputs */
+    border: 1px solid #666; /* Lighter border for contrast */
+}
+
+.dark-mode .model-content input::placeholder {
+    color: #bbb; /* Brighter placeholder text */
+}
+
+.dark-mode .model-content button {
+    background-color: #007BFF; /* Bright blue button for contrast */
+    color: #ffffff; /* White text on the button */
+}
+
+.dark-mode .model-content button:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+.dark-mode .close {
+    color: #f5f5f5; /* Brighten the close button */
+}
+
+/* Dark Mode for Script Output */
+.dark-mode .script-output {
+    background-color: #333; /* Darker background for the script output */
+    color: #f5f5f5; /* Bright text color for readability */
+    border: 1px solid #444; /* Subtle border for better definition */
+    border-radius: 10px; /* Maintain rounded corners */
+    padding: 10px; /* Ensure proper padding for readability */
+}
+
+body, .container, .navbar, .dark-mode-btn, input, select, textarea, .form-group {
+    transition: background-color 0.3s, color 0.3s;
 }
