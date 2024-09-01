@@ -9,21 +9,24 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>VATSIM Flight Plan & ATC Comms</h1>
-
-    <!-- Time Display -->
-    <div id="time-display">
-        <div>
-            <span id="local-time"></span>
-        </div>
-        <div>
-            <span id="zulu-time"></span>
-        </div>
-        <div>
+    <!-- Navigation Menu -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="#" class="navbar-logo">Vatsim ATC / Flight Assistant</a>
+        <ul class="navbar-menu">
+            <li><a href="#">Takeoff Calculator (coming soon)</a></li>
+            <li><a href="#">Landing Calculator (coming soon)</a></li>
+        </ul>
+        <div id="time-display" class="navbar-time">
+            <span id="local-time"></span> |
+            <span id="zulu-time"></span> |
             <span id="current-date"></span>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <h1>VATSIM Flight Plan & ATC Comms</h1>
 
     <div class="form-group">
         <label for="callsign">Callsign</label>
@@ -32,9 +35,9 @@
 
     <button type="button" id="generate-script-btn" class="generate-btn">Generate Delivery Script</button>
 
-<!-- Modal for Additional Questions -->
-<div id="script-modal" class="modal">
-    <div class="modal-content">
+<!-- Model for Additional Questions -->
+<div id="script-model" class="model">
+    <div class="model-content">
         <span class="close">&times;</span>
         <h2>Generate Delivery Script</h2>
         <div class="form-group">
@@ -80,6 +83,9 @@
                 <input type="text" id="departure" name="departure" placeholder="Enter ICAO Code" onblur="getMETAR('departure')">
                 <span id="departure-airport-name" style="margin-left: 10px; color: #555;"></span>
                 <p id="departure-metar" style="color: #333;"></p>
+                <button type="button" id="refresh-departure-metar-btn" class="refresh-btn">Refresh METAR</button>
+                <div id="metar-loading" style="display: none;">Refreshing...</div>
+                <p id="departure-metar-info-message" style="color: green;"></p>
             </div>
             <div id="metar-data-departure"></div>
             <div class="form-row">
@@ -145,7 +151,7 @@
                 </div>
                 <div class="form-group">
                     <label for="departure-runway">Departure Runway</label>
-                    <input type="text" id="departure-runway" name="departure-runway" placeholder="Runway" readonly>
+                    <input type="text" id="departure-runway" name="departure-runway" placeholder="Runway">
                 </div>
                 <div class="form-group">
                     <label for="taxi-instructions">Taxi Instructions</label>
@@ -161,6 +167,9 @@
                     <input type="text" id="arrival" name="arrival" placeholder="Enter ICAO Code" onblur="getMETAR('arrival')">
                     <span id="arrival-airport-name" style="margin-left: 10px; color: #555;"></span>
                     <p id="arrival-metar" style="color: #333;"></p>
+                    <button type="button" id="refresh-arrival-metar-btn" class="refresh-btn">Refresh METAR</button>
+                    <div id="metar-loading" style="display: none;">Refreshing...</div>
+                    <p id="arrival-metar-info-message" style="color: green;"></p>
                 </div>
                 <div id="metar-data-arrival"></div>
                 <div class="form-row">
@@ -201,8 +210,8 @@
         </form>
     </div>
 
+    <!-- Ensure scripts are loaded after the DOM -->
     <script src="scripts.js"></script>
     <script src="time.js"></script>
     </body>
     </html>
-    

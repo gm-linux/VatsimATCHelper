@@ -1,7 +1,9 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
     background-color: #f7f7f7;
+    padding-top: 60px; /* Add padding equal to navbar height */
 }
 
 .container {
@@ -26,6 +28,7 @@ h2 {
     color: #444;
 }
 
+/* Form Group Styles */
 .form-group {
     margin-bottom: 15px;
 }
@@ -37,6 +40,7 @@ label {
     color: #555;
 }
 
+/* Input, Select, and Textarea Styles */
 input, select, textarea {
     width: 100%;
     padding: 8px;
@@ -45,12 +49,74 @@ input, select, textarea {
     border-radius: 4px;
     font-size: 14px;
     color: #555;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 textarea {
     height: 60px;
 }
 
+input:focus, select:focus, textarea:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+input:invalid, select:invalid {
+    border-color: red;
+}
+
+.small-input {
+    width: 150px; /* Adjust this width as needed */
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #555;
+}
+
+.small-input::placeholder {
+    color: #aaa;
+}
+
+.small-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Refresh Button Styles */
+.refresh-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.refresh-btn:hover {
+    background-color: #218838;
+}
+
+/* Loading Indicator Styles */
+#metar-loading {
+    font-size: 14px;
+    color: #007BFF;
+    margin-top: 10px;
+}
+
+#departure-metar-info-message,
+#arrival-metar-info-message {
+    font-size: 14px;
+    color: green;
+    margin-top: 5px;
+}
+
+/* Inline Group Styles */
 .inline-group {
     display: flex;
     align-items: center;
@@ -61,6 +127,7 @@ textarea {
     margin-right: 10px;
 }
 
+/* Form Row Styles */
 .form-row {
     display: flex;
     justify-content: space-between;
@@ -75,36 +142,48 @@ textarea {
     margin-right: 0;
 }
 
-button.clear-btn {
+/* Button Styles */
+button.clear-btn, .generate-btn, .submit-btn {
     display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    margin: 20px 0;
+    padding: 12px 20px;
+    font-size: 18px;
     cursor: pointer;
-    margin-top: 20px;
-    background-color: #ff4b4b;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button.clear-btn:hover {
+button.clear-btn:hover, .generate-btn:hover, .submit-btn:hover {
     background-color: #ff3333;
+    transform: scale(1.05);
 }
 
+/* Time Display */
 #time-display {
-    position: fixed;
-    top: 10px;
-    right: 20px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    font-size: 14px;
-    z-index: 1000;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
 }
 
+.navbar-time {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    padding: 5px 10px;
+    margin-right: auto; /* Push the time display to the far right */
+}
+
+.navbar-time span {
+    margin: 0 5px;
+}
+
+/* Search Container Styles */
 .search-container {
     position: relative;
     display: flex;
@@ -128,6 +207,10 @@ button.clear-btn:hover {
     outline: none; /* Remove default focus outline */
 }
 
+#aircraft-search::placeholder {
+    color: #aaa; /* Lighter placeholder text */
+}
+
 #aircraft {
     width: 100%;
     padding: 10px;
@@ -144,55 +227,67 @@ button.clear-btn:hover {
     border-color: #007BFF; /* Change border color on hover */
 }
 
-#aircraft-search::placeholder {
-    color: #aaa; /* Lighter placeholder text */
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-/* Optional: Add a search icon to the input */
-#aircraft-search {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zm-5.444 0a5.5 5.5 0 1 1 7.778-7.778 5.5 5.5 0 0 1-7.778 7.778z"/></svg>') no-repeat right 10px center;
-    background-size: 16px;
-}
-
-.small-input {
-    width: 150px; /* Adjust this width as needed */
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #555;
-}
-
-.small-input::placeholder {
-    color: #aaa;
-}
-
-.small-input:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-/* Button Styles */
-.generate-btn, .submit-btn {
-    display: block;
-    margin: 20px 0;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* Navbar Styles */
+.navbar {
     background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0; /* Make sure it starts from the very left edge */
+    width: 100%; /* Ensure it spans the full width */
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.generate-btn:hover, .submit-btn:hover {
+/* Navbar Container */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure it spans the full width inside the navbar */
+    margin: 0; /* Remove any margin that might cause it to be centered */
+}
+
+.navbar-logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-menu a:hover {
     background-color: #0056b3;
 }
 
-/* Modal Styles */
-.modal {
+/* Model Styles */
+.model {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1000; /* Sit on top */
@@ -204,7 +299,7 @@ button.clear-btn:hover {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-content {
+.model-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -228,28 +323,61 @@ button.clear-btn:hover {
     cursor: pointer;
 }
 
+/* Form Sections */
+.form-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Script Output */
 .script-output {
     margin-top: 20px;
     padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: #eef2f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     font-family: Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-input, select {
-    transition: border 0.3s ease;
+/* Feedback Model Styles */
+.model {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
 }
 
-input:invalid, select:invalid {
-    border-color: red;
+.model-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 400px; /* Ensure it doesn't get too wide */
+    border-radius: 10px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
