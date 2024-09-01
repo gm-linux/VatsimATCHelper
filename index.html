@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VATSIM Flight Plan & ATC Comms</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>VATSIM Flight Plan & ATC Comms</h1>
+
+    <!-- Time Display -->
+    <div id="time-display">
+        <div>
+            <span id="local-time"></span>
+        </div>
+        <div>
+            <span id="zulu-time"></span>
+        </div>
+        <div>
+            <span id="current-date"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="callsign">Callsign</label>
+        <input type="text" id="callsign" name="callsign" placeholder="Enter Callsign" maxlength="10" class="small-input">
+    </div>
+
+    <button type="button" id="generate-script-btn" class="generate-btn">Generate Delivery Script</button>
+
+<!-- Modal for Additional Questions -->
+<div id="script-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Generate Delivery Script</h2>
+        <div class="form-group">
+            <label for="atc-type">ATC Type Online</label>
+            <select id="atc-type">
+                <option value="Delivery">Delivery</option>
+                <option value="Ground">Ground</option>
+                <option value="Tower">Tower</option>
+                <option value="Approach/Departure">Approach/Departure</option>
+                <option value="Centre">Centre</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="stand-number">Stand Number</label>
+            <input type="text" id="stand-number" placeholder="Enter Stand Number">
+        </div>
+        <button type="button" id="submit-script-btn" class="submit-btn">Generate Script</button>
+    </div>
+</div>
+
+<!-- Display Generated Script -->
+<div id="generated-script" class="script-output"></div>
+
+    
+    <div class="form-group">
+        <label for="aircraft-search">Search Aircraft</label>
+        <div class="search-container">
+            <input type="text" id="aircraft-search" placeholder="Type to search...">
+            <select id="aircraft" name="aircraft" onchange="updateAircraftDescription()">
+                <option value="">Select Aircraft</option>
+                <!-- Options will be populated dynamically using JavaScript -->
+            </select>
+        </div>
+        <span id="aircraft-description" style="margin-left: 10px; font-style: italic; color: #555;"></span>
+    </div>
+
+    <!-- Departure Section -->
+    <form id="flight-plan-form">
+        <h2>Departure Information</h2>
+        <div class="form-section">
+            <div class="form-group">
+                <label for="departure">Departure From</label>
+                <input type="text" id="departure" name="departure" placeholder="Enter ICAO Code" onblur="getMETAR('departure')">
+                <span id="departure-airport-name" style="margin-left: 10px; color: #555;"></span>
+                <p id="departure-metar" style="color: #333;"></p>
+            </div>
+            <div id="metar-data-departure"></div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="information">Departure Information</label>
+                    <select id="information" name="information"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                        <label for="wind-direction-departure">Wind</label>
+                        <input type="text" id="wind-direction-departure" placeholder="Direction" readonly>
+                        <label for="wind-speed-departure" style="margin-left: 10px;">at</label>
+                        <input type="text" id="wind-speed-departure" placeholder="Speed" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="visibility-departure">Visibility</label>
+                        <input type="text" id="visibility-departure" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="sky-departure">Sky</label>
+                        <input type="text" id="sky-departure" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="temp-departure">Temp</label>
+                        <input type="text" id="temp-departure" readonly>
+                        <label for="dew-departure" style="margin-left: 10px;">Dew</label>
+                        <input type="text" id="dew-departure" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="altimeter-departure">Altimeter</label>
+                        <input type="text" id="altimeter-departure" readonly>
+                    </div>
+                </div>
+            </div>
+    
+            <h2>IFR Clearance</h2>
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="cleared-to">Cleared to</label>
+                    <input type="text" id="cleared-to" name="cleared-to" readonly>
+                </div>            
+                <div class="form-group">
+                    <label for="via">VIA</label>
+                    <input type="text" id="via" name="via" placeholder="Enter route">
+                </div>
+                <div class="form-group" style="display: flex; align-items: center;">
+                    <label for="maintain" style="flex: 0 0 80px;">Maintain</label>
+                    <input type="text" id="maintain" name="maintain" placeholder="Feet" maxlength="5" style="width: 80px; margin-right: 20px;">
+                    <label for="expect" style="flex: 0 0 80px;">Expect</label>
+                    <input type="text" id="expect" name="expect" placeholder="FL" maxlength="5" style="width: 80px; margin-right: 20px;">
+                    <label for="in" style="flex: 0 0 30px;">in</label>
+                    <input type="text" id="in-minutes" name="in-minutes" maxlength="2" style="width: 40px; margin-right: 10px;">
+                    <span style="font-weight: bold;">Minutes</span>
+                </div>
+                <div class="form-group">
+                    <label for="departure-frequency">Departure Frequency</label>
+                    <input type="text" id="departure-frequency" name="departure-frequency" placeholder="Frequency">
+                </div>
+                <div class="form-group">
+                    <label for="squawk">Squawk</label>
+                    <input type="text" id="squawk" name="squawk" placeholder="Enter squawk code">
+                </div>
+                <div class="form-group">
+                    <label for="departure-runway">Departure Runway</label>
+                    <input type="text" id="departure-runway" name="departure-runway" placeholder="Runway" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="taxi-instructions">Taxi Instructions</label>
+                    <input type="text" id="taxi-instructions" name="taxi-instructions" placeholder="Enter taxi instructions">
+                </div>
+            </div>        
+    
+            <!-- Arrival Section -->
+            <h2>Arrival Information</h2>
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="arrival">Arrival to</label>
+                    <input type="text" id="arrival" name="arrival" placeholder="Enter ICAO Code" onblur="getMETAR('arrival')">
+                    <span id="arrival-airport-name" style="margin-left: 10px; color: #555;"></span>
+                    <p id="arrival-metar" style="color: #333;"></p>
+                </div>
+                <div id="metar-data-arrival"></div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="information">Arrival Information</label>
+                        <select id="information" name="information"></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="wind-direction-arrival">Wind</label>
+                        <input type="text" id="wind-direction-arrival" placeholder="Direction" readonly>
+                        <label for="wind-speed-arrival" style="margin-left: 10px;">at</label>
+                        <input type="text" id="wind-speed-arrival" placeholder="Speed" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="visibility-arrival">Visibility</label>
+                        <input type="text" id="visibility-arrival" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="sky-arrival">Sky</label>
+                        <input type="text" id="sky-arrival" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="temp-arrival">Temp</label>
+                        <input type="text" id="temp-arrival" readonly>
+                        <label for="dew-arrival" style="margin-left: 10px;">Dew</label>
+                        <input type="text" id="dew-arrival" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="altimeter-arrival">Altimeter</label>
+                        <input type="text" id="altimeter-arrival" readonly>
+                    </div>
+                </div>
+            </div>
+    
+            <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
+        </form>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="time.js"></script>
+    </body>
+    </html>
+    
