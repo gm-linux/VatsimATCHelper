@@ -138,50 +138,6 @@ window.onclick = function(event) {
     }
 }
 
-// Function to save form data to localStorage
-function saveFormData() {
-    const callsign = document.getElementById('callsign').value;
-    const standNumber = document.getElementById('stand-number').value;
-    const aircraft = document.getElementById('aircraft').value;
-    const departure = document.getElementById('departure').value;
-    const arrival = document.getElementById('arrival').value;
-
-    localStorage.setItem('callsign', callsign);
-    localStorage.setItem('standNumber', standNumber);
-    localStorage.setItem('aircraft', aircraft);
-    localStorage.setItem('departure', departure);
-    localStorage.setItem('arrival', arrival);
-
-    alert("Data saved successfully!");
-}
-
-// Function to load form data from localStorage
-function loadFormData() {
-    document.getElementById('callsign').value = localStorage.getItem('callsign') || '';
-    document.getElementById('stand-number').value = localStorage.getItem('standNumber') || '';
-    document.getElementById('aircraft').value = localStorage.getItem('aircraft') || '';
-    document.getElementById('departure').value = localStorage.getItem('departure') || '';
-    document.getElementById('arrival').value = localStorage.getItem('arrival') || '';
-}
-
-// Function to clear form data and localStorage
-function clearFormData() {
-    if (confirm("Are you sure you want to clear the data?")) {
-        localStorage.clear();
-        document.getElementById("flight-plan-form").reset();
-        alert("Data cleared successfully!");
-    }
-}
-
-// Event listeners for the buttons
-document.getElementById('save-data-btn').addEventListener('click', saveFormData);
-document.getElementById('clear-data-btn').addEventListener('click', clearFormData);
-
-// Load form data when the page is loaded
-document.addEventListener('DOMContentLoaded', loadFormData);
-
-
-
 // Generate the delivery script
 submitBtn.onclick = function() {
     const callsign = document.getElementById('callsign').value;
