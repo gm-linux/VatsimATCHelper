@@ -138,6 +138,48 @@ window.onclick = function(event) {
     }
 }
 
+// Save data to localStorage
+function saveFormData() {
+    const callsign = document.getElementById('callsign').value;
+    const standNumber = document.getElementById('stand-number').value;
+    const aircraft = document.getElementById('aircraft').value;
+    const departure = document.getElementById('departure').value;
+    const arrival = document.getElementById('arrival').value;
+
+    localStorage.setItem('callsign', callsign);
+    localStorage.setItem('standNumber', standNumber);
+    localStorage.setItem('aircraft', aircraft);
+    localStorage.setItem('departure', departure);
+    localStorage.setItem('arrival', arrival);
+}
+
+function clearLocalStorage() {
+    localStorage.clear();
+    document.getElementById("flight-plan-form").reset();
+}
+
+// Attach this to your clear button
+document.querySelector('.clear-btn').addEventListener('click', clearLocalStorage);
+
+
+// Load data from localStorage
+function loadFormData() {
+    document.getElementById('callsign').value = localStorage.getItem('callsign') || '';
+    document.getElementById('stand-number').value = localStorage.getItem('standNumber') || '';
+    document.getElementById('aircraft').value = localStorage.getItem('aircraft') || '';
+    document.getElementById('departure').value = localStorage.getItem('departure') || '';
+    document.getElementById('arrival').value = localStorage.getItem('arrival') || '';
+}
+
+// Save form data whenever an input is changed
+document.querySelectorAll('input, select').forEach(input => {
+    input.addEventListener('change', saveFormData);
+});
+
+// Load form data on page load
+document.addEventListener('DOMContentLoaded', loadFormData);
+
+
 // Generate the delivery script
 submitBtn.onclick = function() {
     const callsign = document.getElementById('callsign').value;
