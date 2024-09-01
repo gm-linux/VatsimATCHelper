@@ -138,7 +138,7 @@ window.onclick = function(event) {
     }
 }
 
-// Save data to localStorage
+// Function to save form data to localStorage
 function saveFormData() {
     const callsign = document.getElementById('callsign').value;
     const standNumber = document.getElementById('stand-number').value;
@@ -151,18 +151,11 @@ function saveFormData() {
     localStorage.setItem('aircraft', aircraft);
     localStorage.setItem('departure', departure);
     localStorage.setItem('arrival', arrival);
+
+    alert("Data saved successfully!");
 }
 
-function clearLocalStorage() {
-    localStorage.clear();
-    document.getElementById("flight-plan-form").reset();
-}
-
-// Attach this to your clear button
-document.querySelector('.clear-btn').addEventListener('click', clearLocalStorage);
-
-
-// Load data from localStorage
+// Function to load form data from localStorage
 function loadFormData() {
     document.getElementById('callsign').value = localStorage.getItem('callsign') || '';
     document.getElementById('stand-number').value = localStorage.getItem('standNumber') || '';
@@ -171,13 +164,22 @@ function loadFormData() {
     document.getElementById('arrival').value = localStorage.getItem('arrival') || '';
 }
 
-// Save form data whenever an input is changed
-document.querySelectorAll('input, select').forEach(input => {
-    input.addEventListener('change', saveFormData);
-});
+// Function to clear form data and localStorage
+function clearFormData() {
+    if (confirm("Are you sure you want to clear the data?")) {
+        localStorage.clear();
+        document.getElementById("flight-plan-form").reset();
+        alert("Data cleared successfully!");
+    }
+}
 
-// Load form data on page load
+// Event listeners for the buttons
+document.getElementById('save-data-btn').addEventListener('click', saveFormData);
+document.getElementById('clear-data-btn').addEventListener('click', clearFormData);
+
+// Load form data when the page is loaded
 document.addEventListener('DOMContentLoaded', loadFormData);
+
 
 
 // Generate the delivery script
