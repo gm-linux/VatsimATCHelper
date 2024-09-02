@@ -41,7 +41,7 @@ Before you begin, ensure you have the following installed on your system:
 
 You can also access this application directly through GitHub Pages. The project is hosted at the following URL:
 
-- **[VATSIM Flight Plan & ATC Comms Assistant on GitHub Pages]([https://yourusername.github.io/vatsim-atc-flight-assistant/](https://gm-linux.github.io/VatsimATCHelper/)**
+- **[VATSIM Flight Plan & ATC Comms Assistant on GitHub Pages][https://gm-linux.github.io/VatsimATCHelper/]**
 
 Simply click the link, and you can start using the application without needing to download or install anything!
 
