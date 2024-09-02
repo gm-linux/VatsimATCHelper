@@ -51,12 +51,12 @@ If you prefer to run the application locally, follow these steps:
 
 1. **Clone the Repository**: Start by cloning this repository to your local machine using:
    ```bash
-   git clone https://github.com/yourusername/vatsim-atc-flight-assistant.git
+   git clone https://github.com/yourusername/VatsimATCHelper.git
    ```
 
 2. **Navigate to the Project Directory**:
    ```bash
-   cd vatsim-atc-flight-assistant
+   cd VatsimATCHelper
    ```
 
 3. **Open `index.html` in Your Browser**: Simply open the `index.html` file in your preferred web browser to start using the application.
@@ -100,8 +100,10 @@ Upon opening the application, you are greeted with the main interface that conta
 Here’s a brief overview of the project structure:
 
 ```
-/vatsim-atc-flight-assistant
+/VatsimATCHelper
 │
+├── LICENSE           # MIT License File
+├── README.md         # Readme file containing information
 ├── index.html        # Main HTML file
 ├── styles.css        # Styling for the application
 ├── scripts.js        # Main JavaScript functionality
